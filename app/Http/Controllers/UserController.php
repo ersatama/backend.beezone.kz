@@ -4,9 +4,24 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Contracts\UserContract;
+use App\Repositories\User_phone\User_phoneRepositoryEloquent;
 
 class UserController extends Controller
 {
+    protected $userPhone;
+    public function __construct(User_phoneRepositoryEloquent $userPhone) {
+        $this->userPhone = $userPhone;
+    }
+
+    //GET CODE
+    public function getCode($phone) {
+        return $this->userPhone->getRestoreCodeByPhone($phone);
+    }
+
+    //RESTORE PASSWORD
+    public function restorePassword($phone) {
+        return $this->userPhone->restorePassword($phone);
+    }
 
     //CHECK REFERRAL CODE
     public function referral($token) {

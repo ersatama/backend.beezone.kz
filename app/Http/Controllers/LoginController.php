@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Contracts\UserContract;
 use App\Contracts\StatusCode;
-use App\Repositories\User_phone;
+use App\Repositories\User_phone\User_phoneRepositoryEloquent;
 
 class LoginController extends Controller
 {
     protected $userPhone;
-    public function __construct(User_phone $userPhone)
+    public function __construct(User_phoneRepositoryEloquent $userPhone)
     {
         $this->$userPhone = $userPhone;
     }

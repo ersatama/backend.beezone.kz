@@ -22,7 +22,6 @@ class UserContract implements DB
     public const ADDRESS            = 'address';
     public const TOKEN              = 'token';
     public const REF                = 'ref';
-    public const DEL                = 'del';
     public const PASSWORD           = 'password';
     public const EMAIL_NOTIFICATION = 'email_notification';
     public const PUSH_NOTIFICATION  = 'push_notification';

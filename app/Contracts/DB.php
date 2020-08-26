@@ -10,6 +10,7 @@ interface DB
 
     //DEFAULT VALUES
     public const REF_DEFAULT        = 0;
+    public const DEL                = 'del';
     public const DEL_DELETED        = 'deleted';
     public const DEL_ACTIVE         = 'active';
     public const DEL_BLOCKED        = 'blocked';
