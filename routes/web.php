@@ -25,6 +25,7 @@ Route::get('/active_user/{id}','UserController@active')->name('user.active');
 Route::get('/delete_user/{id}','UserController@delete')->name('user.delete');
 Route::get('/restore_password/{phone}','UserController@restorePassword')->name('user.password.restore');
 Route::get('/get_restore_code/{phone}','UserController@getCode')->name('user.getCode');
+Route::get('/change_password/{phone}/{password}','UserController@changePassword')->name('user.password.change');
 //Route::get('/login', 'LoginController@show')->name('login');
 
 Auth::routes();

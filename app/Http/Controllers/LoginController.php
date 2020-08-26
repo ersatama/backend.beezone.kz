@@ -13,9 +13,9 @@ use App\Repositories\User_phone\User_phoneRepositoryEloquent;
 class LoginController extends Controller
 {
     protected $userPhone;
-    public function __construct(User_phoneRepositoryEloquent $userPhone)
+    public function __construct()
     {
-        $this->$userPhone = $userPhone;
+        $this->userPhone = new User_phoneRepositoryEloquent;
     }
 
     public function auth(Request $request) {
@@ -26,10 +26,9 @@ class LoginController extends Controller
             UserContract::PASSWORD => $password
         ];
         if (Auth::attempt($credentials)) {
-            //$user = User::where('');
             return response(Auth::id(), StatusCode::OK);//IF AUTH SUCCESS, THEN RETURN OK
         }
-        return response('', StatusCode::UNAUTHORIZED);//UNAUTHORIZED
+        return response('UNAUTHORIZED', StatusCode::UNAUTHORIZED);//UNAUTHORIZED
     }
 
     public function getByPhone(Request $request) {

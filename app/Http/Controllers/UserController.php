@@ -2,15 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\StatusCode;
 use App\User;
 use App\Contracts\UserContract;
 use App\Repositories\User_phone\User_phoneRepositoryEloquent;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     protected $userPhone;
-    public function __construct(User_phoneRepositoryEloquent $userPhone) {
-        $this->userPhone = $userPhone;
+    public function __construct() {
+        $this->userPhone = new User_phoneRepositoryEloquent;
+    }
+
+    public function register(Request $request) {
+
+    }
+
+    //CHANGE PASSWORD
+    public function changePassword($phone,$password) {
+        $user = User::where(UserContract::PHONE,$phone)->first();
+        if ($user) {
+            $user->password = Hash::make($password);
+            $user->save();
+            return response(Auth::id(), StatusCode::OK);
+        }
+        return response(Auth::id(), StatusCode::BAD_REQUEST);
     }
 
     //GET CODE
