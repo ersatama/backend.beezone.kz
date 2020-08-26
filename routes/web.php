@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/login_check', 'LoginController@getByPhone')->name('phone.check');
+Route::post('/auth','LoginController@auth')->name('auth');
+Route::get('/referral/{token}', 'UserController@referral')->name('user.referral');
+Route::get('/block_user/{id}','UserController@block')->name('user.block');
+Route::get('/active_user/{id}','UserController@active')->name('user.active');
+Route::get('/delete_user/{id}','UserController@delete')->name('user.delete');
+//Route::get('/login', 'LoginController@show')->name('login');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Contracts\UserContract;
 
 class CreateUsersTable extends Migration
 {
@@ -13,23 +14,23 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create(UserContract::TABLE, function (Blueprint $table) {
             $table->id();
-            $table->string('status');
-            $table->string('name');
-            $table->string('surname');
-            $table->string('last_name');
-            $table->string('phone')->unique();
-            $table->timestamp('phone_verified_at')->nullable();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('address');
-            $table->string('token');
-            $table->bigInteger('ref')->default(0);
-            $table->enum('del', ['deleted', 'active', 'blocked'])->default('active');
-            $table->string('password');
-            $table->smallInteger('email_notification')->default(0);
-            $table->smallInteger('push_notification')->default(0);
+            $table->string(UserContract::STATUS);
+            $table->string(UserContract::NAME);
+            $table->string(UserContract::SURNAME);
+            $table->string(UserContract::LAST_NAME);
+            $table->string(UserContract::PHONE)->unique();
+            $table->timestamp(UserContract::PHONE_VERIFIED_AT)->nullable();
+            $table->string(UserContract::EMAIL)->unique();
+            $table->timestamp(UserContract::EMAIL_VERIFIED_AT)->nullable();
+            $table->string(UserContract::ADDRESS);
+            $table->string(UserContract::TOKEN);
+            $table->bigInteger(UserContract::REF)->default(UserContract::REF_DEFAULT);
+            $table->enum(UserContract::DEL, UserContract::DEL_VALUES)->default(UserContract::DEL_ACTIVE);
+            $table->string(UserContract::PASSWORD);
+            $table->smallInteger(UserContract::EMAIL_NOTIFICATION)->default(UserContract::EMAIL_NOTIFICATION_DEFAULT);
+            $table->smallInteger(UserContract::PUSH_NOTIFICATION)->default(UserContract::PUSH_NOTIFICATION_DEFAULT);
             $table->rememberToken();
             $table->timestamps();
         });
