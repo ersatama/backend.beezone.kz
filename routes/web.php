@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Route::get('/login_check', 'LoginController@getByPhone')->name('phone.check');
 Route::post('/auth','LoginController@auth')->name('auth');
-Route::get('/new_user', 'UserController@register')->name('user.register');
+Route::post('/new_user', 'UserController@register')->name('user.register');
 Route::get('/referral/{token}', 'UserController@referral')->name('user.referral');
 Route::get('/block_user/{id}','UserController@block')->name('user.block');
 Route::get('/active_user/{id}','UserController@active')->name('user.active');
