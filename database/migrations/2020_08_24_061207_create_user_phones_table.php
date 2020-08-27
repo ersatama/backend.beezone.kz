@@ -16,6 +16,7 @@ class CreateUserPhonesTable extends Migration
         Schema::create('user_phones', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
+            $table->string('phone');
             $table->string('code');
             $table->enum('del', ['deleted', 'active', 'blocked'])->default('active');
             $table->timestamps();

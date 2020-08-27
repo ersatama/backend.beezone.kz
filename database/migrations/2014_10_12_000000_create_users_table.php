@@ -16,16 +16,16 @@ class CreateUsersTable extends Migration
     {
         Schema::create(UserContract::TABLE, function (Blueprint $table) {
             $table->id();
-            $table->string(UserContract::STATUS);
-            $table->string(UserContract::NAME);
-            $table->string(UserContract::SURNAME);
-            $table->string(UserContract::LAST_NAME);
+            $table->string(UserContract::STATUS)->default('user');
+            $table->string(UserContract::NAME)->nullable();
+            $table->string(UserContract::SURNAME)->nullable();
+            $table->string(UserContract::LAST_NAME)->nullable();
             $table->string(UserContract::PHONE)->unique();
             $table->timestamp(UserContract::PHONE_VERIFIED_AT)->nullable();
-            $table->string(UserContract::EMAIL)->unique();
+            $table->string(UserContract::EMAIL)->unique()->nullable();
             $table->timestamp(UserContract::EMAIL_VERIFIED_AT)->nullable();
-            $table->string(UserContract::ADDRESS);
-            $table->string(UserContract::TOKEN);
+            $table->string(UserContract::ADDRESS)->nullable();
+            $table->string(UserContract::TOKEN)->nullable();
             $table->bigInteger(UserContract::REF)->default(UserContract::REF_DEFAULT);
             $table->enum(UserContract::DEL, UserContract::DEL_VALUES)->default(UserContract::DEL_ACTIVE);
             $table->string(UserContract::PASSWORD);

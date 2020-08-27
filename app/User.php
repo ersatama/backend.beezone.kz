@@ -17,8 +17,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        UserContract::NAME,
-        UserContract::EMAIL,
+        UserContract::REF,
+        UserContract::PHONE,
         UserContract::PASSWORD,
     ];
 

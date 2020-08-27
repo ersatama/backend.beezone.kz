@@ -6,18 +6,22 @@ use App\Contracts\StatusCode;
 use App\User;
 use App\Contracts\UserContract;
 use App\Repositories\User_phone\User_phoneRepositoryEloquent;
+use App\Repositories\User\UserRepositoryEloquent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     protected $userPhone;
+    protected $user;
     public function __construct() {
         $this->userPhone = new User_phoneRepositoryEloquent;
+        $this->user      = new UserRepositoryEloquent;
     }
 
     public function register(Request $request) {
-
+        $user = $this->user->register($request->all());
+        return $this->userPhone->setRegisterCode($user->id, $user->phone);
     }
 
     //CHANGE PASSWORD
