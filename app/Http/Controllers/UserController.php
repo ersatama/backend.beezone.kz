@@ -24,14 +24,52 @@ class UserController extends Controller
         return $this->userPhone->setRegisterCode($user->id, $user->phone);
     }
 
-    //GET USER INFO
-    public function getInfo() {
-        if (Auth::check()) {
-            $user = User::where('id',Auth::id())->first();
+    //VERIFY CODE
+    public function verifyCode(Request $request) {
+        $phone  = $request->input('phone');
+        $user   = User::where(UserContract::PHONE,$phone)->first();
+        if ($user) {
+            $user->phone_verified_at = date('Y-m-d G:i:s');
+            $user->save();
             return response($user, StatusCode::OK);
-        } else {
-            return response('UNAUTHORIZED', StatusCode::UNAUTHORIZED);
         }
+        return response('UNAUTHORIZED', StatusCode::BAD_REQUEST);
+    }
+
+    //SAVE USER INFO
+    public function store(Request $request) {
+
+        $id                 = $request->input('id');
+        $name               = $request->input('name');
+        $surname            = $request->input('surname');
+        $last_name          = $request->input('last_name');
+        $phone_verified_at  = $request->input('phone_verified_at');
+        $email              = $request->input('email');
+        $email_verified_at  = $request->input('email_verified_at');
+        $email_notification = $request->input('email_notification');
+        $push_notification  = $request->input('push_notification');
+
+        $user                       = User::where(UserContract::ID,$id)->first();
+        $user->name                 = $name;
+        $user->surname              = $surname;
+        $user->last_name            = $last_name;
+        $user->phone_verified_at    = $phone_verified_at;
+        $user->email                = $email;
+        $user->email_verified_at    = $email_verified_at;
+        $user->email_notification   = $email_notification;
+        $user->push_notification    = $push_notification;
+        $user->save();
+
+        return $request->all();
+    }
+
+    //GET USER INFO
+    public function get() {
+        if (Auth::check()) {
+            $user = User::where(UserContract::ID,Auth::id())->first();
+            return response($user, StatusCode::OK);
+        }
+        return response('UNAUTHORIZED', StatusCode::UNAUTHORIZED);
     }
 
     //CHANGE PASSWORD

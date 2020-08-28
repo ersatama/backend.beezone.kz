@@ -40,4 +40,8 @@ class User extends Authenticatable
     protected $casts = [
         UserContract::EMAIL_VERIFIED_AT => 'datetime',
     ];
+
+    public function getPhoneAttribute($value){
+        return join('',['+',$value]);
+    }
 }
