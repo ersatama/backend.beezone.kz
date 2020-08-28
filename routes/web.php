@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/edit','UserController@getInfo')->name('user.info');
+//Route::post('/save','UserController@store')->name('user.save');
+
 Route::get('/login_check', 'LoginController@getByPhone')->name('phone.check');
 Route::post('/auth','LoginController@auth')->name('auth');
 Route::post('/new_user', 'UserController@register')->name('user.register');

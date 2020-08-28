@@ -24,6 +24,16 @@ class UserController extends Controller
         return $this->userPhone->setRegisterCode($user->id, $user->phone);
     }
 
+    //GET USER INFO
+    public function getInfo() {
+        if (Auth::check()) {
+            $user = User::where('id',Auth::id())->first();
+            return response($user, StatusCode::OK);
+        } else {
+            return response('UNAUTHORIZED', StatusCode::UNAUTHORIZED);
+        }
+    }
+
     //CHANGE PASSWORD
     public function changePassword($phone,$password) {
         $user = User::where(UserContract::PHONE,$phone)->first();
