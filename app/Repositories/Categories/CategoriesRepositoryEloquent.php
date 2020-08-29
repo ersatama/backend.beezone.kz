@@ -4,8 +4,29 @@
 namespace App\Repositories\Categories;
 
 use App\Models\categories;
+use App\Contracts\Category;
 
 class CategoriesRepositoryEloquent implements CategoriesRepositoryInterface
 {
-
+    private $take = 30;
+    private $skip = 0;
+    public function getByBrandId($brandId, $request) {
+        if ($request->has('page')) {
+            $this->skip = (int)$request->input('page') - 1;
+        }
+        return categories::with('goods')->where([
+            [Category::BRAND_ID,$brandId],
+            [Category::DEL,Category::DEL_ACTIVE]
+        ])->skip($this->take)->take($this->skip)->get();
+    }
+    public function getByBrandIdAndGoodsId($brandId, $goodsId, $request) {
+        if ($request->has('page')) {
+            $this->skip = (int)$request->input('page') - 1;
+        }
+        return categories::with('goods')->where([
+            [Category::BRAND_ID,$brandId],
+            [Category::GOODS_ID,$goodsId],
+            [Category::DEL,Category::DEL_ACTIVE]
+        ])->skip($this->take)->take($this->skip)->get();
+    }
 }

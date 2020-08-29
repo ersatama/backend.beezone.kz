@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Contracts\brands;
 
 class CreateBrandsTable extends Migration
 {
@@ -13,12 +14,12 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create(brands::NAME, function (Blueprint $table) {
             $table->id();
-            $table->char('code', 2)->unique();
-            $table->string('title');
-            $table->integer('order');
-            $table->smallInteger('del')->default(0);
+            $table->char(brands::CODE, brands::CODE_LENGTH)->unique();
+            $table->string(brands::TITLE);
+            $table->integer(brands::ORDER);
+            $table->enum(brands::DEL, brands::DEL_VALUES)->default(brands::DEL_ACTIVE);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists(brands::NAME);
     }
 }
