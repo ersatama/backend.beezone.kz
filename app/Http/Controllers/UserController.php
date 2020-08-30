@@ -24,6 +24,14 @@ class UserController extends Controller
         return $this->userPhone->setRegisterCode($user->id, $user->phone);
     }
 
+    //DEALERS COUNT
+    public function dealers() {
+        if (Auth::check()) {
+            return User::where(UserContract::REF,Auth::id())->count();
+        }
+        return response('UNAUTHORIZED', StatusCode::UNAUTHORIZED);
+    }
+
     //VERIFY CODE
     public function verifyCode(Request $request) {
         $phone  = $request->input('phone');

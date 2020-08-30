@@ -26,6 +26,8 @@ Route::get('/brands/{id}','BrandsController@getBrandById')->name('brands.id');
 //GET CATEGORY BY BRAND_ID
 Route::get('/category/{brandId}','CategoryController@getByBrandId')->name('category');
 
+Route::get('/dealers','UserController@dealers')->name('dillers');
+
 //GET CATEGORY BY ID
 Route::get('/category/item/{id}','CategoryController@getById')->name('category.item');
 
