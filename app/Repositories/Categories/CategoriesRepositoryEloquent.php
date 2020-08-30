@@ -8,8 +8,10 @@ use App\Contracts\Category;
 
 class CategoriesRepositoryEloquent implements CategoriesRepositoryInterface
 {
+
     private $take = 30;
     private $skip = 0;
+
     public function getByBrandId($brandId, $request) {
         if ($request->has('page')) {
             $this->skip = (int)$request->input('page') - 1;
@@ -19,6 +21,15 @@ class CategoriesRepositoryEloquent implements CategoriesRepositoryInterface
             [Category::DEL,Category::DEL_ACTIVE]
         ])->skip($this->take)->take($this->skip)->get();
     }
+
+    public function getById($id) {
+        return categories::with('goods')->where([
+            [Category::ID,$id],
+            [Category::DEL,Category::DEL_ACTIVE]
+        ])->first();
+        return $id;
+    }
+
     public function getByBrandIdAndGoodsId($brandId, $goodsId, $request) {
         if ($request->has('page')) {
             $this->skip = (int)$request->input('page') - 1;
@@ -29,4 +40,5 @@ class CategoriesRepositoryEloquent implements CategoriesRepositoryInterface
             [Category::DEL,Category::DEL_ACTIVE]
         ])->skip($this->take)->take($this->skip)->get();
     }
+
 }

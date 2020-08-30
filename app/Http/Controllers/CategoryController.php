@@ -17,6 +17,10 @@ class CategoryController extends Controller
         return $this->category->getByBrandId($brandId, $request);
     }
 
+    public function getById($id) {
+        return $this->category->getById($id);
+    }
+
     public function getByBrandIdAndGoodsId($brandId, $goodsId, Request $request) {
         return $this->category->getByBrandIdAndGoodsId($brandId, $goodsId, $request);
     }

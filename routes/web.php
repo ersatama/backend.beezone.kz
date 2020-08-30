@@ -26,6 +26,12 @@ Route::get('/brands/{id}','BrandsController@getBrandById')->name('brands.id');
 //GET CATEGORY BY BRAND_ID
 Route::get('/category/{brandId}','CategoryController@getByBrandId')->name('category');
 
+//GET CATEGORY BY ID
+Route::get('/category/item/{id}','CategoryController@getById')->name('category.item');
+
+//GET MATRIX PRICE BY CATEGORY_ID
+Route::get('/matrix/{id}','MatrixController@getMatrixByCategoryId')->name('matrix.category');
+
 //GET CATEGORY BY BRAND_ID AND GOODS_ID
 Route::get('/category/{brandId}/{goodsId}','CategoryController@getByBrandIdAndGoodsId')->name('categoryAndGoods');
 
