@@ -41,7 +41,11 @@ class User extends Authenticatable
         UserContract::EMAIL_VERIFIED_AT => 'datetime',
     ];
 
-    public function getPhoneAttribute($value){
+    public function getPhoneAttribute($value) {
         return join('',['+',$value]);
+    }
+
+    public function children() {
+        return $this->hasMany(User::class, 'id','ref');
     }
 }

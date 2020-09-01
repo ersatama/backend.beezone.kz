@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Contracts\UserContract;
@@ -23,7 +24,7 @@ class LoginController extends Controller
         $password       = $request->input('password');
         $credentials    = [
             UserContract::PHONE    => $phone,
-            UserContract::PASSWORD => $password
+            UserContract::PASSWORD => $password,
         ];
         if (Auth::attempt($credentials)) {
             return response(Auth::id(), StatusCode::OK);//IF AUTH SUCCESS, THEN RETURN OK

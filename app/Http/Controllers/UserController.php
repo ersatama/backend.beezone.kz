@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
     protected $userPhone;
     protected $user;
+
     public function __construct() {
         $this->userPhone = new User_phoneRepositoryEloquent;
         $this->user      = new UserRepositoryEloquent;
@@ -26,10 +28,17 @@ class UserController extends Controller
 
     //DEALERS COUNT
     public function dealers() {
-        if (Auth::check()) {
-            return User::where(UserContract::REF,Auth::id())->count();
-        }
-        return response('UNAUTHORIZED', StatusCode::UNAUTHORIZED);
+        return $this->user->dealers();
+    }
+
+    //SUB DEALERS COUNT
+    public function subDealers() {
+        return $this->user->subDealers();
+    }
+
+    //DEALER INFO BY ID
+    public function dealerInfo($id) {
+        return $this->user->dealerInfo($id);
     }
 
     //VERIFY CODE

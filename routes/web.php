@@ -26,7 +26,14 @@ Route::get('/brands/{id}','BrandsController@getBrandById')->name('brands.id');
 //GET CATEGORY BY BRAND_ID
 Route::get('/category/{brandId}','CategoryController@getByBrandId')->name('category');
 
-Route::get('/dealers','UserController@dealers')->name('dillers');
+//GET DEALERS LIST
+Route::get('/dealers','UserController@dealers')->name('dealers');
+
+//GET SUB DEALERS LIST
+Route::get('/sub_dealers','UserController@subDealers')->name('subDealers');
+
+//GET DEALER INFO
+Route::get('/dealer/{id}','UserController@dealerInfo')->name('dealerInfo');
 
 //GET CATEGORY BY ID
 Route::get('/category/item/{id}','CategoryController@getById')->name('category.item');
