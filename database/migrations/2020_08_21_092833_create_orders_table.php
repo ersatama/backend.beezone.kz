@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Contracts\Orders;
+
 class CreateOrdersTable extends Migration
 {
     /**
@@ -13,17 +15,16 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create(Orders::NAME, function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->bigInteger('categories_id');
-            $table->bigInteger('user_id');
-            $table->string('address');
-            $table->bigInteger('time_id');
-            $table->bigInteger('payment_id');
-            $table->string('comment');
-            $table->smallInteger('status');
-            $table->smallInteger('del')->default(0);
+            $table->string(Orders::CODE);
+            $table->bigInteger(Orders::USER_ID);
+            $table->string(Orders::ADDRESS);
+            $table->bigInteger(Orders::TIME_ID);
+            $table->bigInteger(Orders::PAYMENT_ID);
+            $table->string(Orders::COMMENT)->nullable();
+            $table->smallInteger(Orders::STATUS);
+            $table->enum(Orders::DEL, Orders::DEL_VALUES)->default(Orders::DEL_ACTIVE);
             $table->timestamps();
         });
     }
@@ -35,6 +36,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists(Orders::NAME);
     }
 }

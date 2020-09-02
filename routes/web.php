@@ -35,6 +35,24 @@ Route::get('/sub_dealers','UserController@subDealers')->name('subDealers');
 //GET DEALER INFO
 Route::get('/dealer/{id}','UserController@dealerInfo')->name('dealerInfo');
 
+//STORE NEW ORDER
+Route::post('/order/save','OrderController@store')->name('order.store');
+
+//GET INFO COUNT SUM PROFIT
+Route::get('/order','OrderController@main')->name('order.main');
+
+//GET ORDER LIST
+Route::get('/order/list','OrderController@list')->name('order.list');
+
+//GET ORDER ALL
+Route::get('/order/all','OrderController@all')->name('order.all');
+
+//GET ORDER DETAIL
+Route::get('/order/detail/{id}','OrderController@detail')->name('order.detail');
+
+//SET ORDER STATUS
+Route::get('/order/status/{id}','OrderController@status')->name('order.status');
+
 //GET CATEGORY BY ID
 Route::get('/category/item/{id}','CategoryController@getById')->name('category.item');
 

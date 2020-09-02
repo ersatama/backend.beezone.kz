@@ -19,7 +19,7 @@ class CategoriesRepositoryEloquent implements CategoriesRepositoryInterface
         return categories::with('goods')->where([
             [Category::BRAND_ID,$brandId],
             [Category::DEL,Category::DEL_ACTIVE]
-        ])->skip($this->take)->take($this->skip)->get();
+        ])->skip($this->skip)->take($this->take)->get();
     }
 
     public function getById($id) {
