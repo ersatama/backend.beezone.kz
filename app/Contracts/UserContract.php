@@ -15,6 +15,8 @@ class UserContract implements DB
     public const NAME               = 'name';
     public const SURNAME            = 'surname';
     public const LAST_NAME          = 'last_name';
+    public const SEX                = 'sex';
+    public const BIRTHDATE          = 'birthdate';
     public const PHONE              = 'phone';
     public const PHONE_VERIFIED_AT  = 'phone_verified_at';
     public const EMAIL              = 'email';

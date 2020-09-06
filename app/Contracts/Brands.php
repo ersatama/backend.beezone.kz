@@ -11,5 +11,6 @@ class brands implements DB
     const CODE          = 'code';
     const CODE_LENGTH   = 2;
     const TITLE         = 'title';
+    const LOGO          = 'logo';
     const ORDER         = 'order';
 }

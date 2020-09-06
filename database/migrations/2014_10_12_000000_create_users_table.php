@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string(UserContract::NAME)->nullable();
             $table->string(UserContract::SURNAME)->nullable();
             $table->string(UserContract::LAST_NAME)->nullable();
+            $table->smallInteger(UserContract::SEX)->default(0);
+            $table->date(UserContract::BIRTHDATE);
             $table->string(UserContract::PHONE)->unique();
             $table->timestamp(UserContract::PHONE_VERIFIED_AT)->nullable();
             $table->string(UserContract::EMAIL)->unique()->nullable();

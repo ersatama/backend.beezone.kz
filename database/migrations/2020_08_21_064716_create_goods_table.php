@@ -16,7 +16,16 @@ class CreateGoodsTable extends Migration
     {
         Schema::create(Goods::NAME, function (Blueprint $table) {
             $table->id();
-            $table->string(Goods::TITLE);
+            $table->string(Goods::TITLE)->nullable();
+            $table->string(Goods::TITLE_1C)->nullable();
+            $table->string(Goods::THUMBNAIL_IMG)->nullable();
+            $table->string(Goods::FEATURED_IMG)->nullable();
+            $table->string(Goods::FLASH_IMG)->nullable();
+            $table->string(Goods::TAGS)->nullable();
+            $table->text(Goods::DESCRIPTION)->nullable();
+            $table->string(Goods::META_TITLE)->nullable();
+            $table->text(Goods::META_DESCRIPTION)->nullable();
+            $table->string(Goods::META_IMG)->nullable();
             $table->enum(Goods::DEL, Goods::DEL_VALUES)->default(Goods::DEL_ACTIVE);
             $table->timestamps();
         });
@@ -29,6 +38,6 @@ class CreateGoodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('goods');
+        Schema::dropIfExists(Goods::NAME);
     }
 }

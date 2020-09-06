@@ -14,8 +14,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    /*$pro = Illuminate\Support\Facades\DB::table('products_test')->get();
+    echo '<pre>';
+    foreach ($pro as $key=>$val) {
+        $val = (array) $val;
+        Illuminate\Support\Facades\DB::table('goods')->insert([[
+            'title'             =>  $val['name'],
+            'title_1c'          =>  $val['name'],
+            'thumbnail_img'     =>  $val['thumbnail_img'],
+            'featured_img'      =>  $val['featured_img'],
+            'flash_img'         =>  $val['flash_deal_img'],
+            'tags'              =>  $val['tags'],
+            'description'       =>  $val['description'],
+            'meta_title'        =>  $val['meta_title'],
+            'meta_description'  =>  $val['meta_description'],
+            'meta_img'          =>  $val['meta_img'],
+            'del'               =>  'active',
+        ]]);
+    }
+    exit;
+    return $pro;*/
     return view('welcome');
 });
+
+Route::get('/search/{text}','SearchController@search')->name('search');
 
 //GET ALL BRANDS
 Route::get('/brands','BrandsController@list')->name('brands');

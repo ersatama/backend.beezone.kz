@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->bigInteger(Category::BRAND_ID);
             $table->bigInteger(Category::GOODS_ID);
-            $table->string(Category::IMG);
+            $table->bigInteger(Category::PRODUCT_ID);
             $table->string(Category::TITLE);
             $table->integer(Category::MAX);
             $table->integer(Category::LIMIT);

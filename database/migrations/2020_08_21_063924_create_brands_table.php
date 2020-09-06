@@ -18,6 +18,7 @@ class CreateBrandsTable extends Migration
             $table->id();
             $table->char(brands::CODE, brands::CODE_LENGTH)->unique();
             $table->string(brands::TITLE);
+            $table->string(brands::LOGO);
             $table->integer(brands::ORDER);
             $table->enum(brands::DEL, brands::DEL_VALUES)->default(brands::DEL_ACTIVE);
             $table->timestamps();
