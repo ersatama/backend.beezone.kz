@@ -14,6 +14,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    /*$pro = Illuminate\Support\Facades\DB::table('users_test')->get();
+    echo '<pre>';
+    foreach ($pro as $key=>$val) {
+        $val = (array) $val;
+        print_r($val);
+        Illuminate\Support\Facades\DB::table('users')->insert([[
+            'name'             =>  $val['name'],
+            'birthdate'          =>  date('Y-m-d'),
+            'phone'     =>  $val['phone'],
+            'phone_verified_at' =>  date('Y-m-d'),git
+            'email'         =>  $val['email'],
+            'email_verified_at' =>  $val['email_verified_at'],
+            'address'       =>  $val['address'],
+            'token'        =>  'U',
+            'avatar'  =>  $val['avatar'],
+            'avatar_original'  =>  $val['avatar_original'],
+            'password'          => $val['password'],
+            'email_notification'    => 0,
+            'push_notification'     => 0,
+            'del'               =>  'active',
+        ]]);
+    }
+    exit;
+    //php artisan migrate:refresh --path=/database/migrations/2014_10_12_000000_create_users_table.php
+    return $pro;*/
     /*$pro = Illuminate\Support\Facades\DB::table('products_test')->get();
     echo '<pre>';
     foreach ($pro as $key=>$val) {
@@ -33,6 +58,7 @@ Route::get('/', function () {
         ]]);
     }
     exit;
+    //php artisan migrate:refresh --path=/database/migrations/2014_10_12_000000_create_users_table.php
     return $pro;*/
     return view('welcome');
 });

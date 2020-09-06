@@ -13,8 +13,6 @@ class UserContract implements DB
     //FIELD NAMES
     public const STATUS             = 'status';
     public const NAME               = 'name';
-    public const SURNAME            = 'surname';
-    public const LAST_NAME          = 'last_name';
     public const SEX                = 'sex';
     public const BIRTHDATE          = 'birthdate';
     public const PHONE              = 'phone';
@@ -24,6 +22,8 @@ class UserContract implements DB
     public const ADDRESS            = 'address';
     public const TOKEN              = 'token';
     public const REF                = 'ref';
+    public const AVATAR             = 'avatar';
+    public const AVATAR_ORIGINAL    = 'avatar_original';
     public const PASSWORD           = 'password';
     public const EMAIL_NOTIFICATION = 'email_notification';
     public const PUSH_NOTIFICATION  = 'push_notification';
