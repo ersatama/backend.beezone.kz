@@ -26,6 +26,16 @@ class UserController extends Controller
         return $this->userPhone->setRegisterCode($user->id, $user->phone);
     }
 
+    //RESEND CODE
+    public function resendCode(Request $request) {
+        $phone  = $request->input('phone');
+        $user   = User::where(UserContract::PHONE,$phone)->first();
+        if ($user) {
+            return $this->userPhone->setRegisterCode($user->id, $user->phone);
+        }
+        return response('UNAUTHORIZED',StatusCode::BAD_REQUEST);
+    }
+
     //DEALERS COUNT
     public function dealers() {
         return $this->user->dealers();

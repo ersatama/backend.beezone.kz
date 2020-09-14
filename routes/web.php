@@ -14,6 +14,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    /*$pro = Illuminate\Support\Facades\DB::table('goods')->get();
+    echo '<pre>';
+    $i = 0;
+    foreach ($pro as $key=>$val) {
+        $i++;
+        $val = (array) $val;
+        print_r($val);
+        Illuminate\Support\Facades\DB::table('categories')->insert([[
+            'brand_id'          =>  1,
+            'goods_id'          =>  $i,
+            'product_id'        =>  1,
+            'title'             =>  $val['title'],
+            'max'               =>  150,
+            'limit'             =>  6,
+            'del'               => 'active',
+
+        ]]);
+    }*/
+    exit;
+
     /*$pro = Illuminate\Support\Facades\DB::table('users_test')->get();
     echo '<pre>';
     foreach ($pro as $key=>$val) {
@@ -37,8 +58,7 @@ Route::get('/', function () {
         ]]);
     }
     exit;
-    //php artisan migrate:refresh --path=/database/migrations/2014_10_12_000000_create_users_table.php
-    return $pro;*/
+    */
     /*$pro = Illuminate\Support\Facades\DB::table('products_test')->get();
     echo '<pre>';
     foreach ($pro as $key=>$val) {
@@ -132,6 +152,7 @@ Route::get('/active_user/{id}','UserController@active')->name('user.active');
 Route::get('/delete_user/{id}','UserController@delete')->name('user.delete');
 Route::get('/restore_password/{phone}','UserController@restorePassword')->name('user.password.restore');
 Route::get('/get_restore_code/{phone}','UserController@getCode')->name('user.getCode');
+Route::get('/resend_code','UserController@resendCode')->name('user.resendCode');
 Route::get('/verify_code','UserController@verifyCode')->name('user.code');
 Route::get('/change_password/{phone}/{password}','UserController@changePassword')->name('user.password.change');
 //Route::get('/login', 'LoginController@show')->name('login');
